@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petra Imports — премиальный импорт автомобилей</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+</head>
+<body>
+    <canvas id="cursor-trail"></canvas>
+    <header class="site-header">
+        <div class="brand">Petra Imports</div>
+        <nav class="site-nav">
+            <a href="#inventory">Каталог</a>
+            <a href="#services">Сервисы</a>
+            <a href="#process">Процесс</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+        <button class="btn btn-primary" id="header-order">Оставить заявку</button>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-text">
+                <p class="label">Премиальный автоимпорт</p>
+                <h1>Petra привозит автомобили мечты под ключ</h1>
+                <p class="subtitle">Выбирайте из тщательно отобранного пула спорткаров, электрокаров и внедорожников. Мы берём на себя поиски, проверку, логистику и таможню.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" data-action="open-inventory">Подобрать авто</button>
+                    <button class="btn btn-ghost" data-action="open-services">Смотреть сервисы</button>
+                </div>
+                <dl class="hero-stats">
+                    <div>
+                        <dt>180+</dt>
+                        <dd>Партнёров по всему миру</dd>
+                    </div>
+                    <div>
+                        <dt>12 лет</dt>
+                        <dd>экспертизы в импорте</dd>
+                    </div>
+                    <div>
+                        <dt>48 ч</dt>
+                        <dd>на подбор вариантов</dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <img src="https://images.unsplash.com/photo-1640622654923-151150fe78c6?auto=compress&cs=tinysrgb&w=1200" alt="Porsche 911 Dakar" />
+                    <div class="hero-card__meta">
+                        <h3>Porsche 911 Dakar</h3>
+                        <p>Под заказ · поставка 90 дней</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero-gallery" aria-label="Галерея избранных поставок">
+            <div class="gallery-track">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1661961110671-fffe7980118c?auto=compress&cs=tinysrgb&w=1200" alt="Ferrari Roma" />
+                </div>
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1594502184348-3e588e9f3e18?auto=compress&cs=tinysrgb&w=1200" alt="Mercedes-Benz G-Class" />
+                </div>
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=compress&cs=tinysrgb&w=1200" alt="BMW i4" />
+                </div>
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=compress&cs=tinysrgb&w=1200" alt="Audi RS e-tron GT" />
+                </div>
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=compress&cs=tinysrgb&w=1200" alt="Lamborghini Huracán" />
+                </div>
+            </div>
+        </section>
+
+        <section id="inventory" class="inventory-section">
+            <div class="section-head">
+                <p class="label">Каталог Petra</p>
+                <h2>Фильтруйте автомобили по бренду, типу топлива и бюджету</h2>
+                <p class="muted">Актуальный пул автомобилей, доступных к импорту. Фильтры обновляются автоматически при появлении новых лотов.</p>
+            </div>
+            <div class="filters">
+                <label>
+                    Бренд
+                    <select id="brand-filter">
+                        <option value="all">Все бренды</option>
+                    </select>
+                </label>
+                <label>
+                    Тип топлива
+                    <select id="fuel-filter">
+                        <option value="all">Все типы</option>
+                    </select>
+                </label>
+                <label>
+                    Привод
+                    <select id="drivetrain-filter">
+                        <option value="all">Любой</option>
+                    </select>
+                </label>
+                <label>
+                    Коробка передач
+                    <select id="transmission-filter">
+                        <option value="all">Любая</option>
+                    </select>
+                </label>
+                <label>
+                    Максимальная цена (₽)
+                    <input type="number" id="price-filter" placeholder="Без ограничений" min="0" step="100000" />
+                </label>
+                <label>
+                    Поиск по модели
+                    <input type="search" id="search-filter" placeholder="Например, Taycan или гибрид" />
+                </label>
+                <button id="reset-filters" class="btn btn-ghost">Сбросить</button>
+            </div>
+            <div id="inventory-grid" class="inventory-grid"></div>
+            <p id="inventory-empty" class="inventory-empty hidden">Под выбранные фильтры автомобилей нет. Попробуйте изменить параметры.</p>
+        </section>
+
+        <section id="services" class="services-section">
+            <div class="section-head">
+                <p class="label">Полный цикл</p>
+                <h2>Личные кураторы, правовая поддержка и прозрачная логистика</h2>
+            </div>
+            <div class="service-grid">
+                <article>
+                    <h3>Глобальный поиск</h3>
+                    <p>Доступ к закрытым аукционам Европы, Японии и ОАЭ. Сверяем VIN, пробег и историю, исключая компрометированные лоты.</p>
+                </article>
+                <article>
+                    <h3>Комплаенс и растаможка</h3>
+                    <p>Команда юристов адаптирует документы под требования ЕАЭС и СНГ, сопровождаем оформление до ПТС.</p>
+                </article>
+                <article>
+                    <h3>Логистика под контролем</h3>
+                    <p>Закрепляем персонального логиста, предоставляем live-доступ к трекингу судна, страхуем на каждом этапе.</p>
+                </article>
+                <article>
+                    <h3>Персонализация</h3>
+                    <p>Эксклюзивный детейлинг, установка аудио, бронирование, предпусковые подогревы и программирование ассистентов.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="process" class="process-section">
+            <div class="section-head">
+                <p class="label">Как мы работаем</p>
+                <h2>От первого звонка до доставки в ваш город</h2>
+            </div>
+            <ol class="process-steps">
+                <li>
+                    <span>01</span>
+                    <div>
+                        <h3>Бриф и подбор</h3>
+                        <p>Формируем техзадание: бюджет, комплектации, пробег. В течение 48 часов предлагаем 3–5 релевантных лотов.</p>
+                    </div>
+                </li>
+                <li>
+                    <span>02</span>
+                    <div>
+                        <h3>Проверка и выкуп</h3>
+                        <p>Организуем независимую инспекцию, торгуемся за вас и фиксируем цену в договоре с поставщиком.</p>
+                    </div>
+                </li>
+                <li>
+                    <span>03</span>
+                    <div>
+                        <h3>Доставка и таможня</h3>
+                        <p>Страхуем маршрут, подготавливаем пакет документов, сопровождаем таможенное оформление.</p>
+                    </div>
+                </li>
+                <li>
+                    <span>04</span>
+                    <div>
+                        <h3>Выдача и пост-сервис</h3>
+                        <p>Передачу организуем в шоуруме или с доставкой до двери. Предлагаем пост-гарантийное обслуживание.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section class="highlights-section">
+            <div class="highlight">
+                <h3>Фокус на электрокары</h3>
+                <p>40% каталога — EV и гибриды. Настраиваем домашние зарядные станции и интегрируем приложения.</p>
+            </div>
+            <div class="highlight">
+                <h3>Гарантия цены</h3>
+                <p>Фиксируем курс валюты и стоимость доставки в договоре. Возврат депозита при сорванной поставке.</p>
+            </div>
+            <div class="highlight">
+                <h3>Консьерж-сервис</h3>
+                <p>Личный менеджер 24/7, сопровождение страхования, налоговых льгот и перерегистрации.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="contact-card">
+                <p class="label">Связаться</p>
+                <h2>Получите персональный подбор</h2>
+                <p class="muted">Оставьте контакты — куратор Petra отправит подборку автомобилей, подходящих под ваш запрос.</p>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-row">
+                        <label for="client-name">Имя</label>
+                        <input id="client-name" type="text" placeholder="Как к вам обращаться" required minlength="2" />
+                    </div>
+                    <div class="form-row">
+                        <label for="client-phone">Телефон</label>
+                        <input id="client-phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+                    </div>
+                    <div class="form-row">
+                        <label for="client-note">Сообщение</label>
+                        <textarea id="client-note" rows="4" placeholder="Желательные модели, бюджет, сроки"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                </form>
+            </div>
+            <div class="contact-aside">
+                <div>
+                    <h3>Шоурум</h3>
+                    <p>Батуми, ул. Кетеван Цамебули, 1 аллея, дом 18б</p>
+                </div>
+                <div>
+                    <h3>Телефон</h3>
+                    <a href="tel:+79265051888">+7 (926) 505-18-88</a>
+                </div>
+                <div>
+                    <h3>График</h3>
+                    <p>Пн–Сб 10:00–20:00 · Вс по записи</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> Petra Imports. Все права защищены.</p>
+        <div class="footer-links">
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Условия</a>
+            <a href="#hero">Наверх</a>
+        </div>
+    </footer>
+
+    <div class="modal" id="car-modal" aria-hidden="true">
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="car-modal-title">
+            <button class="modal__close" type="button" data-close="car">×</button>
+            <div class="modal__content">
+                <div class="modal__viewer">
+                    <model-viewer id="car-viewer" camera-controls auto-rotate exposure="1.1" shadow-intensity="0.5"></model-viewer>
+                </div>
+                <div class="modal__info">
+                    <h3 id="car-modal-title"></h3>
+                    <p id="car-modal-description" class="muted"></p>
+                    <ul id="car-modal-specs" class="spec-list"></ul>
+                    <div class="modal__features" id="car-modal-features"></div>
+                    <div class="modal__actions">
+                        <button class="btn btn-secondary" type="button" data-close="car">Закрыть</button>
+                        <button class="btn btn-primary" type="button" id="car-modal-order">Оставить заявку</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="order-modal" aria-hidden="true">
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
+            <button class="modal__close" type="button" data-close="order">×</button>
+            <div class="modal__content order">
+                <h3 id="order-modal-title">Заявка на автомобиль</h3>
+                <form id="order-form">
+                    <div class="form-row">
+                        <label for="order-name">Имя</label>
+                        <input id="order-name" name="name" type="text" placeholder="Ваше имя" required minlength="2" />
+                    </div>
+                    <div class="form-row">
+                        <label for="order-phone">Телефон</label>
+                        <input id="order-phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+                    </div>
+                    <div class="form-row">
+                        <label for="order-car">Автомобиль</label>
+                        <input id="order-car" name="car" type="text" readonly />
+                    </div>
+                    <div class="form-row">
+                        <label for="order-note">Комментарий</label>
+                        <textarea id="order-note" name="note" rows="3" placeholder="Дополнительные пожелания"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+</html>
