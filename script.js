@@ -33,10 +33,15 @@ const promoState = {
     timer: null,
 };
 
+let filterSummaryTimer = null;
+
 const elements = {
     headerSearch: document.getElementById('header-search'),
     filterForm: document.getElementById('filter-form'),
     filterSearch: document.getElementById('filter-search'),
+    filterSummary: document.getElementById('filter-summary'),
+    filterSummaryCount: document.getElementById('filter-summary-count'),
+    filterSummaryApply: document.getElementById('filter-summary-apply'),
     filterContainers: {
         brand: document.querySelector('[data-filter="brand"]'),
         fuel: document.querySelector('[data-filter="fuel"]'),
@@ -183,6 +188,7 @@ function renderCatalog() {
     elements.catalogGrid.innerHTML = '';
     if (!filtered.length) {
         elements.catalogEmpty.classList.remove('hidden');
+        updateFilterSummary(0);
         return;
     }
     elements.catalogEmpty.classList.add('hidden');
@@ -213,12 +219,19 @@ function renderCatalog() {
         fragment.appendChild(card);
     });
     elements.catalogGrid.appendChild(fragment);
+    updateFilterSummary(filtered.length);
 }
 
 function applyFilters() {
     readFilters();
     state.filtered = state.cars.filter(matchesFilters);
     renderCatalog();
+}
+
+function updateFilterSummaryPreview() {
+    readFilters();
+    const preview = state.cars.filter(matchesFilters);
+    updateFilterSummary(preview.length, true);
 }
 
 function resetFilters() {
@@ -238,8 +251,60 @@ function resetFilters() {
     applyFilters();
 }
 
-function scrollToSection(selector) {
-    document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function updateFilterSummary(count, preview = false) {
+    if (!elements.filterSummary || !elements.filterSummaryCount) {
+        return;
+    }
+
+    if (!hasActiveFilters()) {
+        clearFilterSummaryTimer();
+        elements.filterSummary.classList.remove('is-visible', 'is-sleeping');
+        elements.filterSummaryCount.textContent = 'Найдено 0 авто';
+        return;
+    }
+
+    elements.filterSummaryCount.textContent = `Найдено ${count} ${pluralize(count, ['авто', 'авто', 'авто'])}`;
+    elements.filterSummary.classList.add('is-visible');
+    elements.filterSummary.classList.remove('is-sleeping');
+
+    startFilterSummaryTimer();
+}
+
+function hasActiveFilters() {
+    return (
+        state.filters.brand.size ||
+        state.filters.fuel.size ||
+        state.filters.drivetrain.size ||
+        state.filters.transmission.size ||
+        state.filters.priceCap ||
+        state.filters.yearFrom ||
+        state.filters.yearTo ||
+        Boolean(state.filters.search)
+    );
+}
+
+function startFilterSummaryTimer() {
+    clearFilterSummaryTimer();
+    filterSummaryTimer = window.setTimeout(() => {
+        if (!elements.filterSummary || !hasActiveFilters()) return;
+        elements.filterSummary.classList.remove('is-visible');
+        elements.filterSummary.classList.add('is-sleeping');
+    }, 15000);
+}
+
+function clearFilterSummaryTimer() {
+    if (filterSummaryTimer) {
+        window.clearTimeout(filterSummaryTimer);
+        filterSummaryTimer = null;
+    }
+}
+
+function pluralize(value, forms) {
+    const mod10 = value % 10;
+    const mod100 = value % 100;
+    if (mod10 === 1 && mod100 !== 11) return forms[0];
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return forms[1];
+    return forms[2];
 }
 
 function pickHeroSequence() {
@@ -390,20 +455,38 @@ function submitLead(form) {
 }
 
 function bindEvents() {
+    elements.filterSummaryApply?.addEventListener('click', () => {
+        applyFilters();
+    });
+    elements.filterForm?.addEventListener('change', updateFilterSummaryPreview);
+    elements.filterForm?.addEventListener('input', updateFilterSummaryPreview);
     elements.headerSearch?.addEventListener('input', () => {
         elements.filterSearch.value = elements.headerSearch.value;
-        applyFilters();
+        updateFilterSummaryPreview();
     });
     elements.filterSearch?.addEventListener('input', () => {
         elements.headerSearch.value = elements.filterSearch.value;
-        applyFilters();
+        updateFilterSummaryPreview();
     });
     elements.priceRange?.addEventListener('input', () => {
         updatePriceDisplay();
+        updateFilterSummaryPreview();
     });
     elements.applyFilters?.addEventListener('click', applyFilters);
     elements.resetFilters?.addEventListener('click', resetFilters);
     elements.catalogGrid?.addEventListener('click', handleCatalogClick);
+
+    if (elements.filterSummary) {
+        elements.filterSummary.addEventListener('mouseenter', () => {
+            clearFilterSummaryTimer();
+            elements.filterSummary?.classList.add('is-visible');
+            elements.filterSummary?.classList.remove('is-sleeping');
+        });
+        elements.filterSummary.addEventListener('mouseleave', () => {
+            if (!hasActiveFilters()) return;
+            startFilterSummaryTimer();
+        });
+    }
 
     elements.heroNavPrev?.addEventListener('click', () => {
         stopHeroAutoplay();

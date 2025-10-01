@@ -90,6 +90,11 @@
             </div>
             <div class="catalog__layout">
                 <aside class="catalog-filter" id="catalog-filter">
+                    <div class="catalog-filter__summary" id="filter-summary" aria-hidden="true">
+                        <span id="filter-summary-count">Найдено 0 авто</span>
+                        <button class="btn btn-primary" type="button" id="filter-summary-apply">Применить</button>
+                    </div>
+                    <div class="catalog-filter__scroll">
                     <form id="filter-form">
                         <div class="filter-search">
                             <label class="search-field">
@@ -140,6 +145,7 @@
                             <button class="btn btn-ghost" type="button" id="reset-filters">Сбросить</button>
                         </div>
                     </form>
+                    </div>
                 </aside>
                 <div class="catalog-content">
                     <div class="catalog-grid" id="catalog-grid"></div>
