@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petra Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+    <main class="admin-shell">
+        <section class="auth" id="login-section">
+            <div class="auth-card">
+                <h1>Petra Admin</h1>
+                <p class="muted">Войдите, используя корпоративный аккаунт</p>
+                <form id="login-form" class="form">
+                    <label>
+                        Email
+                        <input type="email" name="email" placeholder="admin@petra.local" required />
+                    </label>
+                    <label>
+                        Пароль
+                        <input type="password" name="password" placeholder="••••••••" required minlength="6" />
+                    </label>
+                    <button class="btn btn-primary" type="submit">Войти</button>
+                    <p id="login-error" class="form-error" role="alert"></p>
+                </form>
+            </div>
+        </section>
+
+        <div class="admin-panel hidden" id="panel">
+            <aside class="sidebar">
+                <div class="sidebar__brand">
+                    <span class="mark">PETRA</span>
+                    <span class="tag">admin</span>
+                </div>
+                <nav class="sidebar__nav" id="nav">
+                    <button type="button" data-view="dashboard" class="active">Обзор</button>
+                    <button type="button" data-view="catalog">Каталог</button>
+                    <button type="button" data-view="leads">Заявки</button>
+                    <button type="button" data-view="banners">Баннеры</button>
+                    <button type="button" data-view="files">Медиа</button>
+                </nav>
+                <button class="btn btn-ghost" type="button" id="logout">Выйти</button>
+            </aside>
+
+            <section class="panel" id="panel-content">
+                <header class="panel__header">
+                    <h1 id="panel-title">Обзор</h1>
+                    <span class="panel__user" id="panel-user"></span>
+                </header>
+
+                <section class="panel-view" data-view="dashboard">
+                    <div class="stat-grid" id="stats-overview"></div>
+                    <div class="card" id="dashboard-latest">
+                        <div class="card__head">
+                            <h2>Последние заявки</h2>
+                        </div>
+                        <table class="table" id="latest-leads">
+                            <thead>
+                                <tr>
+                                    <th>Имя</th>
+                                    <th>Телефон</th>
+                                    <th>Автомобиль</th>
+                                    <th>Дата</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="panel-view hidden" data-view="catalog">
+                    <div class="split">
+                        <div class="card">
+                            <div class="card__head">
+                                <h2>Автомобили</h2>
+                                <button class="btn btn-secondary" type="button" id="car-create">Новый автомобиль</button>
+                            </div>
+                            <div class="table-wrapper" id="car-list"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 id="car-form-title">Новый автомобиль</h2>
+                                <button class="btn btn-ghost" type="button" id="car-reset">Очистить</button>
+                            </div>
+                            <form class="form car-form" id="car-form">
+                                <input type="hidden" name="id" />
+                                <div class="form-grid">
+                                    <label>Бренд<input name="brand" required /></label>
+                                    <label>Модель<input name="model" required /></label>
+                                </div>
+                                <div class="form-grid">
+                                    <label>Топливо<input name="fuel" required /></label>
+                                    <label>Привод<input name="drivetrain" required /></label>
+                                </div>
+                                <div class="form-grid">
+                                    <label>Коробка<input name="transmission" /></label>
+                                    <label>Мощность<input name="power" /></label>
+                                </div>
+                                <div class="form-grid">
+                                    <label>Год<input type="number" name="year" min="2000" max="2100" /></label>
+                                    <label>Цена (₽)<input type="number" name="price" min="0" step="100000" /></label>
+                                </div>
+                                <div class="form-grid">
+                                    <label>Hero ранг<input type="number" name="heroRank" min="0" max="10" /></label>
+                                    <label>Спец.файл (URL)<input name="specSheetUrl" placeholder="https://" /></label>
+                                </div>
+                                <label>Изображение (URL)<input name="image" placeholder="https://" /></label>
+                                <label>3D модель (GLB URL)<input name="modelUrl" placeholder="https://" /></label>
+                                <label>Описание<textarea name="description" rows="3"></textarea></label>
+                                <label>Особенности (через запятую)<textarea name="features" rows="2"></textarea></label>
+                                <label>Характеристики (формат: Название: Значение)<textarea name="specs" rows="4"></textarea></label>
+                                <div class="gallery-editor">
+                                    <div class="gallery-editor__head">
+                                        <h3>Галерея</h3>
+                                        <div class="gallery-editor__actions">
+                                            <label class="btn btn-secondary">
+                                                Загрузить
+                                                <input type="file" id="gallery-upload" hidden accept="image/*" />
+                                            </label>
+                                            <button class="btn btn-ghost" type="button" id="gallery-add-url">Добавить по URL</button>
+                                        </div>
+                                    </div>
+                                    <div class="gallery-list" id="gallery-list"></div>
+                                </div>
+                                <button class="btn btn-primary" type="submit" id="car-save">Сохранить</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel-view hidden" data-view="leads">
+                    <div class="card">
+                        <div class="card__head">
+                            <h2>Заявки</h2>
+                            <span class="muted">Обновляются автоматически</span>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="table" id="lead-table">
+                                <thead>
+                                    <tr>
+                                        <th>Имя</th>
+                                        <th>Телефон</th>
+                                        <th>Автомобиль</th>
+                                        <th>Статус</th>
+                                        <th>Дата</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel-view hidden" data-view="banners">
+                    <div class="split">
+                        <div class="card">
+                            <div class="card__head">
+                                <h2>Баннеры и новости</h2>
+                                <button class="btn btn-secondary" type="button" id="banner-create">Новый баннер</button>
+                            </div>
+                            <div class="table-wrapper" id="banner-list"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card__head">
+                                <h2 id="banner-form-title">Новый баннер</h2>
+                                <button class="btn btn-ghost" type="button" id="banner-reset">Очистить</button>
+                            </div>
+                            <form class="form" id="banner-form">
+                                <input type="hidden" name="id" />
+                                <label>Заголовок<input name="title" required /></label>
+                                <label>Описание<textarea name="description" rows="3"></textarea></label>
+                                <label>Изображение (URL)<input name="image" placeholder="https://" /></label>
+                                <label>Ссылка (URL)<input name="url" placeholder="https://" /></label>
+                                <label>Текст кнопки<input name="cta" /></label>
+                                <div class="form-grid">
+                                    <label>Метка даты<input name="dateLabel" placeholder="Октябрь 2025" /></label>
+                                    <label>Порядок<input type="number" name="sortOrder" value="0" /></label>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" name="isActive" checked />
+                                    Активен
+                                </label>
+                                <button class="btn btn-primary" type="submit" id="banner-save">Сохранить</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel-view hidden" data-view="files">
+                    <div class="card">
+                        <div class="card__head">
+                            <h2>Загрузка медиа</h2>
+                        </div>
+                        <div class="upload" id="upload-area">
+                            <input type="file" id="media-input" hidden />
+                            <p>Перетащите файлы сюда или нажмите, чтобы выбрать. Поддерживаются изображения и .glb.</p>
+                            <button class="btn btn-secondary" type="button" id="media-select">Выбрать файл</button>
+                        </div>
+                        <div class="upload-result hidden" id="upload-result">
+                            <p>Файл загружен:</p>
+                            <input type="text" readonly id="upload-url" />
+                            <button class="btn btn-ghost" type="button" id="copy-upload-url">Скопировать ссылку</button>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

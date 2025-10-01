@@ -1,643 +1,559 @@
-const carInventory = [
-    {
-        id: 'taycan-4s',
-        brand: 'Porsche',
-        model: 'Taycan 4S Cross Turismo',
-        fuel: 'Электро',
-        drivetrain: 'AWD',
-        transmission: '2-ступ. автомат',
-        year: 2024,
-        price: 11500000,
-        power: '490 л.с.',
-        image: 'https://images.unsplash.com/photo-1619642534960-565b53b3e82b?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        features: ['Performance Battery Plus', 'Запас хода 450 км', 'Пневмоподвеска'],
-        description: 'Полноприводный электрокросс Taycan с адаптивной пневмоподвеской и расширенным багажным пространством для дальних поездок.',
-        specs: [
-            { label: 'Двигатель', value: 'Электрический, 490 л.с.' },
-            { label: 'Разгон 0–100 км/ч', value: '3,8 секунды' },
-            { label: 'Запас хода', value: 'до 450 км (WLTP)' },
-            { label: 'Комплектация', value: 'Performance Battery Plus, Premium Package' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Porsche/glTF-Binary/Porsche.glb',
-    },
-    {
-        id: 'm4-competition',
-        brand: 'BMW',
-        model: 'M4 Competition xDrive',
-        fuel: 'Бензин',
-        drivetrain: 'AWD',
-        transmission: '8-ступ. автомат',
-        year: 2024,
-        price: 9700000,
-        power: '510 л.с.',
-        image: 'https://images.unsplash.com/photo-1616728770275-0a6f9ff5d4c4?auto=compress&cs=tinysrgb&w=1600',
-        features: ['Carbon Bucket Seats', 'M Drift Analyzer', 'M xDrive'],
-        description: 'Купе M4 в исполнении Competition с полным приводом, карбоновым пакетом и спортивной кинематикой подвески.',
-        specs: [
-            { label: 'Двигатель', value: '3.0 TwinPower Turbo, 510 л.с.' },
-            { label: 'Разгон 0–100 км/ч', value: '3,5 секунды' },
-            { label: 'Привод', value: 'M xDrive с перераспределением момента' },
-            { label: 'Особенности', value: 'Carbon bucket seats, M Track Mode' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb',
-    },
-    {
-        id: 'gle-450d',
-        brand: 'Mercedes-Benz',
-        model: 'GLE 450d 4MATIC',
-        fuel: 'Дизель',
-        drivetrain: 'AWD',
-        transmission: '9-ступ. автомат',
-        year: 2024,
-        price: 8850000,
-        power: '367 л.с.',
-        image: 'https://images.unsplash.com/photo-1617813488990-976f5d82c1c3?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        features: ['MBUX Hyperscreen', 'AIRMATIC', 'Пакет Night'],
-        description: 'Современный премиальный внедорожник с дизельным mild-hybrid двигателем, поддержкой полуавтономного вождения и роскошным салоном.',
-        specs: [
-            { label: 'Двигатель', value: '3.0 дизель, 367 л.с. + EQ Boost' },
-            { label: 'Подвеска', value: 'AIRMATIC, адаптивные амортизаторы' },
-            { label: 'Салон', value: 'Nappa Leather, Ambient 64 цвета' },
-            { label: 'Ассистенты', value: 'Driving Assistance Plus, Parking Package' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/ClassicCar/glTF-Binary/ClassicCar.glb',
-    },
-    {
-        id: 'lx600',
-        brand: 'Lexus',
-        model: 'LX 600 Ultra Luxury',
-        fuel: 'Бензин',
-        drivetrain: '4WD',
-        transmission: '10-ступ. автомат',
-        year: 2023,
-        price: 11800000,
-        power: '409 л.с.',
-        image: 'https://images.unsplash.com/photo-1617814075524-4820fbf08b88?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        features: ['Executive Lounge', 'Mark Levinson 25', 'BladeScan AHS'],
-        description: 'Флагманский внедорожник Lexus с четырёхместным салоном Executive, массажно-релаксационными креслами и премиальным звуком Mark Levinson.',
-        specs: [
-            { label: 'Двигатель', value: '3.5 V6 Twin-Turbo, 409 л.с.' },
-            { label: 'Компоновка', value: '4 индивидуальных кресла с массажем' },
-            { label: 'Аудио', value: 'Mark Levinson Reference 25 динамиков' },
-            { label: 'Безопасность', value: 'Lexus Safety System+ 3.0' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb',
-    },
-    {
-        id: 'landcruiser-300',
-        brand: 'Toyota',
-        model: 'Land Cruiser 300 GR-Sport',
-        fuel: 'Бензин',
-        drivetrain: '4WD',
-        transmission: '10-ступ. автомат',
-        year: 2024,
-        price: 9600000,
-        power: '415 л.с.',
-        image: 'https://images.unsplash.com/photo-1549921296-3ecf4aac5734?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        features: ['GR-Sport', 'Crawl Control', 'KDSS'],
-        description: 'Исполнение GR-Sport с электронными стабилизаторами KDSS, блокировками и спортивными акцентами экстерьера.',
-        specs: [
-            { label: 'Двигатель', value: '3.5 V6 Twin-Turbo, 415 л.с.' },
-            { label: 'Система 4WD', value: 'Multi-Terrain Select, Crawl Control' },
-            { label: 'Подвеска', value: 'Электронные стабилизаторы KDSS' },
-            { label: 'Интерьер', value: 'GR-кресла, чёрный потолок' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb',
-    },
-    {
-        id: 'rs-etron',
-        brand: 'Audi',
-        model: 'RS e-tron GT',
-        fuel: 'Электро',
-        drivetrain: 'AWD',
-        transmission: 'Одноступ. редуктор',
-        year: 2024,
-        price: 12400000,
-        power: '646 л.с.',
-        image: 'https://images.unsplash.com/photo-1632477642782-a14547e76437?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        features: ['Carbon Black', 'Matrix LED', 'All-wheel steering'],
-        description: 'Электрический гран-турер с двухмоторной установкой, полноуправляемым шасси и моментальным разгоном.',
-        specs: [
-            { label: 'Двигатель', value: 'Два электромотора, 646 л.с.' },
-            { label: 'Разгон 0–100 км/ч', value: '3,3 секунды' },
-            { label: 'Запас хода', value: '472 км (WLTP)' },
-            { label: 'Особенности', value: 'Carbon Black, quattro, all-wheel steering' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Porsche/glTF-Binary/Porsche.glb',
-    },
-    {
-        id: 'autobiography-phev',
-        brand: 'Land Rover',
-        model: 'Range Rover Autobiography PHEV',
-        fuel: 'Гибрид',
-        drivetrain: 'AWD',
-        transmission: '8-ступ. автомат',
-        year: 2024,
-        price: 14500000,
-        power: '510 л.с.',
-        image: 'https://images.unsplash.com/photo-1563720222244-eca16d6ce01a?auto=compress&cs=tinysrgb&w=1600',
-        features: ['Executive Class Comfort', 'Meridian Signature', 'EV Range 100 км'],
-        description: 'Флагманский Range Rover с подзаряжаемым гибридом, четырехместным салоном Executive и адаптивной пневмоподвеской.',
-        specs: [
-            { label: 'Двигатель', value: '3.0 PHEV, 510 л.с.' },
-            { label: 'Электроход', value: 'до 100 км (WLTP)' },
-            { label: 'Салон', value: 'Executive Class, столики, охлаждение' },
-            { label: 'Аудио', value: 'Meridian Signature 1600 Вт' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Porsche/glTF-Binary/Porsche.glb',
-    },
-    {
-        id: 'patrol-nismo',
-        brand: 'Nissan',
-        model: 'Patrol NISMO',
-        fuel: 'Бензин',
-        drivetrain: '4WD',
-        transmission: '7-ступ. автомат',
-        year: 2024,
-        price: 11200000,
-        power: '428 л.с.',
-        image: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        features: ['Bilstein', 'Aero NISMO', 'NISMO interior'],
-        description: 'Эксклюзивная версия Patrol с заводским тюнингом NISMO, спортивной подвеской Bilstein и вынесенными аэродинамическими элементами.',
-        specs: [
-            { label: 'Двигатель', value: '5.6 V8, 428 л.с.' },
-            { label: 'Подвеска', value: 'Bilstein, спортивная настройка' },
-            { label: 'Экстерьер', value: 'NISMO Aero Kit, 22" диски' },
-            { label: 'Интерьер', value: 'Алькантара, контрастная прострочка' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb',
-    },
-    {
-        id: 'model-x-plaid',
-        brand: 'Tesla',
-        model: 'Model X Plaid',
-        fuel: 'Электро',
-        drivetrain: 'AWD',
-        transmission: 'Одноступ. редуктор',
-        year: 2024,
-        price: 10500000,
-        power: '1020 л.с.',
-        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        features: ['Tri-Motor', 'Yoke', 'Falcon Wings'],
-        description: 'Самый быстрый семейный электрокроссовер с три-моторной системой и дверьми Falcon Wing, оснащённый автопилотом FSD.',
-        specs: [
-            { label: 'Двигатель', value: 'Три электромотора, 1020 л.с.' },
-            { label: 'Разгон 0–100 км/ч', value: '2,6 секунд' },
-            { label: 'Запас хода', value: '580 км (WLTP)' },
-            { label: 'Особенности', value: 'Yoke, Falcon Wing, FSD' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Porsche/glTF-Binary/Porsche.glb',
-    },
-    {
-        id: 'ferrari-roma',
-        brand: 'Ferrari',
-        model: 'Roma',
-        fuel: 'Бензин',
-        drivetrain: 'RWD',
-        transmission: '8-ступ. робот',
-        year: 2023,
-        price: 18700000,
-        power: '620 л.с.',
-        image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=compress&cs=tinysrgb&w=1600',
-        features: ['Matte Grigio', 'Magnaride', 'Carbon Pack'],
-        description: 'Элегантное купе Ferrari с матовым окрасом, подвеской Magnaride и современным цифровым кокпитом.',
-        specs: [
-            { label: 'Двигатель', value: '3.9 V8 Twin-Turbo, 620 л.с.' },
-            { label: 'Разгон 0–100 км/ч', value: '3,4 секунды' },
-            { label: 'Макс. скорость', value: '320 км/ч' },
-            { label: 'Пакет', value: 'Carbon interior & exterior pack' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Ferrari/glTF-Binary/Ferrari.glb',
-    },
-    {
-        id: 'ioniq5-n',
-        brand: 'Hyundai',
-        model: 'Ioniq 5 N',
-        fuel: 'Электро',
-        drivetrain: 'AWD',
-        transmission: 'Одноступ. редуктор',
-        year: 2025,
-        price: 6400000,
-        power: '650 л.с.',
-        image: 'https://images.unsplash.com/photo-1620891549027-942fdc95a128?auto=compress&cs=tinysrgb&w=1600',
-        features: ['N e-Shift', 'Track Mode', 'N Drift Optimizer'],
-        description: 'Первый электрический хетчбек Hyundai N c трековым режимом, имитацией переключений и усиленной системой охлаждения.',
-        specs: [
-            { label: 'Двигатель', value: 'Два электромотора, 650 л.с. (overboost)' },
-            { label: 'Разгон 0–100 км/ч', value: '3,4 секунды' },
-            { label: 'Аккумулятор', value: '84 кВт·ч, 800V архитектура' },
-            { label: 'Особенности', value: 'N e-shift, N Drift Optimizer, Track mode' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb',
-    },
-    {
-        id: 'escalade-v',
-        brand: 'Cadillac',
-        model: 'Escalade-V ESV',
-        fuel: 'Бензин',
-        drivetrain: 'AWD',
-        transmission: '10-ступ. автомат',
-        year: 2024,
-        price: 12500000,
-        power: '682 л.с.',
-        image: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=compress&cs=tinysrgb&w=1600',
-        features: ['Super Cruise', '36 speakers AKG', 'MagRide 4.0'],
-        description: 'Премиальный полноразмерный SUV с шестицилиндровым компрессорным V8, адаптивной подвеской и системой Super Cruise.',
-        specs: [
-            { label: 'Двигатель', value: '6.2 V8 с нагнетателем, 682 л.с.' },
-            { label: 'Аудио', value: 'AKG Studio Reference 36 динамиков' },
-            { label: 'Технологии', value: 'Super Cruise, MagRide 4.0' },
-            { label: 'Салон', value: 'ESV, 3 ряда, полуанилин' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb',
-    },
-    {
-        id: 'gr-yaris',
-        brand: 'Toyota',
-        model: 'GR Yaris Circuit Pack',
-        fuel: 'Бензин',
-        drivetrain: 'AWD',
-        transmission: '6-ступ. МКПП',
-        year: 2024,
-        price: 4300000,
-        power: '304 л.с.',
-        image: 'https://images.unsplash.com/photo-1618841558898-14d0329e6356?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        features: ['Torsen LSD', 'Circuit Suspension', 'Lightweight'],
-        description: 'Ралли-хэтчбек с трёхцилиндровым турбомотором, ручной коробкой и пакетами для автоспорта с завода.',
-        specs: [
-            { label: 'Двигатель', value: '1.6 Turbo 3 цилиндра, 304 л.с.' },
-            { label: 'Коробка', value: '6-ступ. механика, iMT' },
-            { label: 'Пакет', value: 'Circuit Pack: Torsen LSD, жёсткая подвеска' },
-            { label: 'Масса', value: '1 280 кг' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb',
-    },
-    {
-        id: 'bmw-520d',
-        brand: 'BMW',
-        model: '520d Touring xDrive',
-        fuel: 'Дизель',
-        drivetrain: 'AWD',
-        transmission: '8-ступ. автомат',
-        year: 2024,
-        price: 5200000,
-        power: '197 л.с.',
-        image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=compress&cs=tinysrgb&w=1600&dpr=1',
-        features: ['M Sport Pro', 'Panoramic Sky Lounge', 'Mild-Hybrid'],
-        description: 'Практичный универсал с экономичным дизелем, системой mild-hybrid и спортивным пакетом M Sport Pro.',
-        specs: [
-            { label: 'Двигатель', value: '2.0 дизель + 48V mild-hybrid, 197 л.с.' },
-            { label: 'Привод', value: 'xDrive, адаптивная подвеска' },
-            { label: 'Интерьер', value: 'Sensafin + Ambient Sky Lounge' },
-            { label: 'Технологии', value: 'BMW Live Cockpit Pro, Driving Assistant' },
-        ],
-        modelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb',
-    },
-];
-
-const defaultModelUrl = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Porsche/glTF-Binary/Porsche.glb';
-
+﻿const API_BASE = '/api';
+const DEFAULT_MODEL_URL = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Porsche/glTF-Binary/Porsche.glb';
 const priceFormatter = new Intl.NumberFormat('ru-RU', {
     style: 'currency',
     currency: 'RUB',
     maximumFractionDigits: 0,
 });
 
-const controls = {
-    brand: document.getElementById('brand-filter'),
-    fuel: document.getElementById('fuel-filter'),
-    drivetrain: document.getElementById('drivetrain-filter'),
-    transmission: document.getElementById('transmission-filter'),
-    price: document.getElementById('price-filter'),
-    search: document.getElementById('search-filter'),
-    reset: document.getElementById('reset-filters'),
+const state = {
+    cars: [],
+    filtered: [],
+    filters: {
+        brand: new Set(),
+        fuel: new Set(),
+        drivetrain: new Set(),
+        transmission: new Set(),
+        search: '',
+        yearFrom: null,
+        yearTo: null,
+        priceCap: null,
+    },
 };
 
-const inventoryGrid = document.getElementById('inventory-grid');
-const emptyState = document.getElementById('inventory-empty');
+const heroState = {
+    index: 0,
+    rotation: null,
+    sequence: [],
+};
 
-const carModal = document.getElementById('car-modal');
-const carModalTitle = document.getElementById('car-modal-title');
-const carModalDescription = document.getElementById('car-modal-description');
-const carModalSpecs = document.getElementById('car-modal-specs');
-const carModalFeatures = document.getElementById('car-modal-features');
-const carViewer = document.getElementById('car-viewer');
-const carModalOrderBtn = document.getElementById('car-modal-order');
+const promoState = {
+    items: [],
+    index: 0,
+    timer: null,
+};
 
-const orderModal = document.getElementById('order-modal');
-const orderForm = document.getElementById('order-form');
-const orderCarInput = document.getElementById('order-car');
-const orderModalTitle = document.getElementById('order-modal-title');
+const elements = {
+    headerSearch: document.getElementById('header-search'),
+    filterForm: document.getElementById('filter-form'),
+    filterSearch: document.getElementById('filter-search'),
+    filterContainers: {
+        brand: document.querySelector('[data-filter="brand"]'),
+        fuel: document.querySelector('[data-filter="fuel"]'),
+        drivetrain: document.querySelector('[data-filter="drivetrain"]'),
+        transmission: document.querySelector('[data-filter="transmission"]'),
+    },
+    yearFrom: document.getElementById('year-from'),
+    yearTo: document.getElementById('year-to'),
+    priceRange: document.getElementById('price-range'),
+    priceValue: document.getElementById('price-value'),
+    applyFilters: document.getElementById('apply-filters'),
+    resetFilters: document.getElementById('reset-filters'),
+    catalogGrid: document.getElementById('catalog-grid'),
+    catalogEmpty: document.getElementById('catalog-empty'),
+    heroViewer: document.getElementById('hero-viewer'),
+    heroTag: document.getElementById('hero-car-tag'),
+    heroName: document.getElementById('hero-car-name'),
+    heroMeta: document.getElementById('hero-car-meta'),
+    heroDetails: document.querySelector('[data-hero-action="details"]'),
+    heroOrder: document.querySelector('[data-hero-action="order"]'),
+    heroNavPrev: document.querySelector('[data-hero-nav="prev"]'),
+    heroNavNext: document.querySelector('[data-hero-nav="next"]'),
+    heroCTAButtons: {
+        catalog: document.querySelector('[data-action="scroll-catalog"]'),
+        services: document.querySelector('[data-action="scroll-services"]'),
+        openOrder: document.querySelector('[data-action="open-order"]'),
+    },
+    promoTrack: document.getElementById('promo-track'),
+    promoPrev: document.querySelector('[data-promo="prev"]'),
+    promoNext: document.querySelector('[data-promo="next"]'),
+    contactForm: document.getElementById('contact-form'),
+    orderModal: document.getElementById('order-modal'),
+    orderForm: document.getElementById('order-form'),
+    orderClose: document.querySelector('[data-close="order"]'),
+    orderName: document.getElementById('order-name'),
+    orderPhone: document.getElementById('order-phone'),
+    orderCar: document.getElementById('order-car'),
+    orderCarId: document.getElementById('order-car-id'),
+    orderNote: document.getElementById('order-note'),
+    footerYear: document.getElementById('footer-year'),
+};
 
-const contactForm = document.getElementById('contact-form');
+function fetchJson(url, options = {}) {
+    return fetch(url, options).then(async (response) => {
+        if (!response.ok) {
+            const error = await response.json().catch(() => ({}));
+            throw new Error(error.error || 'Не удалось загрузить данные');
+        }
+        return response.json();
+    });
+}
 
-const trailCanvas = document.getElementById('cursor-trail');
-const trailCtx = trailCanvas.getContext('2d');
-let trailPoints = [];
-const trailTTL = 700;
-let animationFrameId;
+function logEvent(type, carId, payload) {
+    fetch(`${API_BASE}/events`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, carId, payload }),
+        keepalive: true,
+    }).catch(() => null);
+}
 
-let currentCarId = null;
+function createFilterCheckbox(value, group) {
+    const label = document.createElement('label');
+    label.className = 'filter-checkbox';
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.value = value;
+    input.name = `${group}[]`;
+    input.addEventListener('change', () => {
+        label.classList.toggle('is-active', input.checked);
+    });
+    const span = document.createElement('span');
+    span.textContent = value;
+    label.append(input, span);
+    return label;
+}
 
-function populateFilter(select, values) {
-    const sorted = [...new Set(values)].sort((a, b) => a.localeCompare(b, 'ru'));
-    sorted.forEach((value) => {
-        const option = document.createElement('option');
-        option.value = value;
-        option.textContent = value;
-        select.append(option);
+function populateFilterGroup(group, values) {
+    const container = elements.filterContainers[group];
+    if (!container) return;
+    container.innerHTML = '';
+    const unique = [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'ru') || a.localeCompare(b));
+    unique.forEach((value) => {
+        container.append(createFilterCheckbox(value, group));
     });
 }
 
 function populateFilters() {
-    populateFilter(controls.brand, carInventory.map((car) => car.brand));
-    populateFilter(controls.fuel, carInventory.map((car) => car.fuel));
-    populateFilter(controls.drivetrain, carInventory.map((car) => car.drivetrain));
-    populateFilter(controls.transmission, carInventory.map((car) => car.transmission));
+    const { cars } = state;
+    populateFilterGroup('brand', cars.map((car) => car.brand));
+    populateFilterGroup('fuel', cars.map((car) => car.fuel));
+    populateFilterGroup('drivetrain', cars.map((car) => car.drivetrain));
+    populateFilterGroup('transmission', cars.map((car) => car.transmission));
+    const maxPrice = Math.max(0, ...cars.map((car) => Number(car.price) || 0));
+    const rounded = Math.ceil(maxPrice / 100000) * 100000;
+    elements.priceRange.max = String(rounded || 0);
+    elements.priceRange.value = String(rounded || 0);
+    state.filters.priceCap = rounded || null;
+    updatePriceDisplay();
 }
 
-function renderInventory(list) {
-    inventoryGrid.innerHTML = '';
-    if (!list.length) {
-        emptyState.classList.remove('hidden');
+function readFilters() {
+    Object.entries(elements.filterContainers).forEach(([group, container]) => {
+        if (!container) return;
+        const checked = Array.from(container.querySelectorAll('input:checked')).map((input) => input.value);
+        state.filters[group] = new Set(checked);
+    });
+    state.filters.search = (elements.filterSearch?.value || elements.headerSearch?.value || '').trim().toLowerCase();
+    state.filters.yearFrom = Number(elements.yearFrom.value) || null;
+    state.filters.yearTo = Number(elements.yearTo.value) || null;
+    const priceValue = Number(elements.priceRange.value) || 0;
+    state.filters.priceCap = priceValue > 0 ? priceValue : null;
+}
+
+function updatePriceDisplay() {
+    const value = Number(elements.priceRange.value) || 0;
+    if (!value) {
+        elements.priceValue.textContent = '—';
         return;
     }
-    emptyState.classList.add('hidden');
-    const fragment = document.createDocumentFragment();
+    elements.priceValue.textContent = priceFormatter.format(value);
+}
 
-    list.forEach((car) => {
+function matchesFilters(car) {
+    const { filters } = state;
+    if (filters.brand.size && !filters.brand.has(car.brand)) return false;
+    if (filters.fuel.size && !filters.fuel.has(car.fuel)) return false;
+    if (filters.drivetrain.size && !filters.drivetrain.has(car.drivetrain)) return false;
+    if (filters.transmission.size && !filters.transmission.has(car.transmission)) return false;
+    if (filters.priceCap && Number(car.price) > filters.priceCap) return false;
+    if (filters.yearFrom && Number(car.year) < filters.yearFrom) return false;
+    if (filters.yearTo && Number(car.year) > filters.yearTo) return false;
+    if (filters.search) {
+        const haystack = [car.brand, car.model, car.power, car.fuel, car.drivetrain, car.transmission, car.description, ...(car.features || [])]
+            .join(' ')
+            .toLowerCase();
+        if (!haystack.includes(filters.search)) return false;
+    }
+    return true;
+}
+
+function renderCatalog() {
+    const { filtered } = state;
+    elements.catalogGrid.innerHTML = '';
+    if (!filtered.length) {
+        elements.catalogEmpty.classList.remove('hidden');
+        return;
+    }
+    elements.catalogEmpty.classList.add('hidden');
+    const fragment = document.createDocumentFragment();
+    filtered.forEach((car) => {
         const card = document.createElement('article');
-        card.className = 'inventory-card';
+        card.className = 'catalog-card';
         card.innerHTML = `
             <img src="${car.image}" alt="${car.brand} ${car.model}" loading="lazy" />
-            <div class="card-body">
-                <div class="card-title">
+            <div class="catalog-card__body">
+                <div class="catalog-card__title">
                     <h3>${car.brand} ${car.model}</h3>
                     <span>${car.year}</span>
                 </div>
-                <div class="card-price">${priceFormatter.format(car.price)}</div>
-                <div class="card-meta">
-                    <span>${car.fuel} · ${car.power}</span>
-                    <span>${car.drivetrain} · ${car.transmission}</span>
+                <div class="catalog-card__price">${priceFormatter.format(car.price)}</div>
+                <div class="catalog-card__meta">
+                    <span>${car.fuel}</span>
+                    <span>${car.drivetrain}</span>
+                    <span>${car.transmission}</span>
                 </div>
-                <div class="card-tags">
-                    ${car.features.map((feature) => `<span class="tag">${feature}</span>`).join('')}
+                <div class="catalog-card__features">
+                    ${(car.features || [])
+                        .slice(0, 3)
+                        .map((feature) => `<span>${feature}</span>`)
+                        .join('')}
                 </div>
-                <div class="card-actions">
+                <div class="catalog-card__actions">
                     <button class="btn btn-secondary" data-action="details" data-id="${car.id}">Подробнее</button>
-                    <button class="btn btn-primary" data-action="order" data-name="${car.brand} ${car.model}">Заявка</button>
+                    <button class="btn btn-primary" data-action="order" data-id="${car.id}">Оставить заявку</button>
                 </div>
             </div>
         `;
-        fragment.append(card);
+        fragment.appendChild(card);
     });
-    inventoryGrid.append(fragment);
+    elements.catalogGrid.appendChild(fragment);
 }
 
 function applyFilters() {
-    const brand = controls.brand.value;
-    const fuel = controls.fuel.value;
-    const drivetrain = controls.drivetrain.value;
-    const transmission = controls.transmission.value;
-    const priceCap = Number(controls.price.value);
-    const query = controls.search.value.trim().toLowerCase();
-
-    const filtered = carInventory.filter((car) => {
-        if (brand !== 'all' && car.brand !== brand) return false;
-        if (fuel !== 'all' && car.fuel !== fuel) return false;
-        if (drivetrain !== 'all' && car.drivetrain !== drivetrain) return false;
-        if (transmission !== 'all' && car.transmission !== transmission) return false;
-        if (!Number.isNaN(priceCap) && priceCap > 0 && car.price > priceCap) return false;
-        if (query) {
-            const haystack = `${car.brand} ${car.model} ${car.features.join(' ')}`.toLowerCase();
-            if (!haystack.includes(query)) return false;
-        }
-        return true;
-    });
-
-    renderInventory(filtered);
+    readFilters();
+    state.filtered = state.cars.filter(matchesFilters);
+    renderCatalog();
 }
 
 function resetFilters() {
-    controls.brand.value = 'all';
-    controls.fuel.value = 'all';
-    controls.drivetrain.value = 'all';
-    controls.transmission.value = 'all';
-    controls.price.value = '';
-    controls.search.value = '';
-    renderInventory(carInventory);
-}
-
-function disableScroll(disable) {
-    document.body.style.overflow = disable ? 'hidden' : '';
-}
-
-function openCarModal(carId) {
-    const car = carInventory.find((item) => item.id === carId);
-    if (!car) return;
-    currentCarId = carId;
-    carModalTitle.textContent = `${car.brand} ${car.model}`;
-    carModalDescription.textContent = car.description;
-
-    carModalSpecs.innerHTML = '';
-    car.specs.forEach((spec) => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span>${spec.label}</span><span>${spec.value}</span>`;
-        carModalSpecs.append(li);
+    Object.values(elements.filterContainers).forEach((container) => {
+        if (!container) return;
+        container.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+            input.checked = false;
+            input.dispatchEvent(new Event('change'));
+        });
     });
-
-    carModalFeatures.innerHTML = car.features.map((feature) => `<span>${feature}</span>`).join('');
-    carViewer.src = car.modelUrl || defaultModelUrl;
-    carModalOrderBtn.dataset.carName = `${car.brand} ${car.model}`;
-
-    carModal.classList.add('open');
-    carModal.setAttribute('aria-hidden', 'false');
-    disableScroll(true);
+    elements.filterSearch.value = '';
+    elements.headerSearch.value = '';
+    elements.yearFrom.value = '';
+    elements.yearTo.value = '';
+    elements.priceRange.value = elements.priceRange.max || '0';
+    updatePriceDisplay();
+    applyFilters();
 }
 
-function closeCarModal() {
-    carModal.classList.remove('open');
-    carModal.setAttribute('aria-hidden', 'true');
-    disableScroll(false);
-    currentCarId = null;
+function scrollToSection(selector) {
+    document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function openOrderModal(carName = '') {
-    orderCarInput.value = carName;
-    if (carName) {
-        orderModalTitle.textContent = `Заявка на ${carName}`;
-    } else {
-        orderModalTitle.textContent = 'Заявка на автомобиль';
+function pickHeroSequence() {
+    const heroCandidates = [...state.cars].sort((a, b) => b.price - a.price).slice(0, 6);
+    heroState.sequence = heroCandidates.length ? heroCandidates : state.cars;
+    heroState.index = 0;
+}
+
+function updateHero() {
+    const car = heroState.sequence[heroState.index];
+    if (!car) return;
+    if (elements.heroViewer) {
+        elements.heroViewer.classList.add('is-swapping');
+        const handleLoad = () => {
+            elements.heroViewer.classList.remove('is-swapping');
+        };
+        elements.heroViewer.addEventListener('load', handleLoad, { once: true });
+        elements.heroViewer.src = car.modelUrl || DEFAULT_MODEL_URL;
+        window.setTimeout(() => {
+            elements.heroViewer.classList.remove('is-swapping');
+        }, 600);
     }
-    orderModal.classList.add('open');
-    orderModal.setAttribute('aria-hidden', 'false');
-    disableScroll(true);
+    elements.heroTag.textContent = `${car.brand}`;
+    elements.heroName.textContent = `${car.model}`;
+    const metaParts = [car.year, car.power, car.fuel, car.price ? priceFormatter.format(car.price) : null].filter(Boolean);
+    elements.heroMeta.textContent = metaParts.join(' · ');
+    elements.heroDetails.dataset.id = car.id;
+    elements.heroOrder.dataset.id = car.id;
+    elements.heroOrder.dataset.name = `${car.brand} ${car.model}`;
+}
+
+function rotateHero(step = 1) {
+    if (!heroState.sequence.length) return;
+    heroState.index = (heroState.index + step + heroState.sequence.length) % heroState.sequence.length;
+    updateHero();
+}
+
+function startHeroAutoplay() {
+    stopHeroAutoplay();
+    heroState.rotation = window.setInterval(() => rotateHero(1), 7000);
+}
+
+function stopHeroAutoplay() {
+    if (heroState.rotation) {
+        window.clearInterval(heroState.rotation);
+        heroState.rotation = null;
+    }
+}
+
+function renderPromo() {
+    const { items, index } = promoState;
+    elements.promoTrack.innerHTML = '';
+    if (!items.length) {
+        elements.promoTrack.innerHTML = '<div class="promo-card">Скоро будут размещены свежие новости.</div>';
+        return;
+    }
+    const fragment = document.createDocumentFragment();
+    items.forEach((item, idx) => {
+        const card = document.createElement('article');
+        card.className = 'promo-card';
+        card.innerHTML = `
+            <time datetime="${item.date || ''}">${item.dateLabel || ''}</time>
+            <h3>${item.title}</h3>
+            <p>${item.description || ''}</p>
+            ${item.cta ? `<a class="btn btn-secondary" href="${item.url || '#'}" target="_blank" rel="noopener">${item.cta}</a>` : ''}
+        `;
+        fragment.appendChild(card);
+        if (idx === index) {
+            card.scrollIntoView({ inline: 'center', behavior: 'instant', block: 'nearest' });
+        }
+    });
+    elements.promoTrack.appendChild(fragment);
+}
+
+function rotatePromo(step = 1) {
+    if (!promoState.items.length) return;
+    promoState.index = (promoState.index + step + promoState.items.length) % promoState.items.length;
+    renderPromo();
+}
+
+function startPromoAutoplay() {
+    stopPromoAutoplay();
+    promoState.timer = window.setInterval(() => rotatePromo(1), 8000);
+}
+
+function stopPromoAutoplay() {
+    if (promoState.timer) {
+        window.clearInterval(promoState.timer);
+        promoState.timer = null;
+    }
+}
+
+function openOrderModal(car) {
+    elements.orderModal.classList.add('open');
+    elements.orderModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (car) {
+        elements.orderCar.value = `${car.brand} ${car.model}`;
+        elements.orderCarId.value = car.id || '';
+    } else {
+        elements.orderCar.value = '';
+        elements.orderCarId.value = '';
+    }
+    elements.orderName.focus({ preventScroll: true });
 }
 
 function closeOrderModal() {
-    orderModal.classList.remove('open');
-    orderModal.setAttribute('aria-hidden', 'true');
-    disableScroll(false);
+    elements.orderModal.classList.remove('open');
+    elements.orderModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    elements.orderForm.reset();
 }
 
-function handleInventoryClick(event) {
+function handleCatalogClick(event) {
     const button = event.target.closest('button[data-action]');
     if (!button) return;
-    const action = button.dataset.action;
-    if (action === 'details') {
-        openCarModal(button.dataset.id);
-    } else if (action === 'order') {
-        openOrderModal(button.dataset.name);
+    const carId = button.dataset.id;
+    const car = state.cars.find((item) => item.id === carId);
+    if (!car) return;
+    if (button.dataset.action === 'details') {
+        logEvent('catalog_details_clicked', carId);
+        window.location.href = `car.html?id=${encodeURIComponent(carId)}`;
+    } else if (button.dataset.action === 'order') {
+        logEvent('catalog_order_clicked', carId);
+        openOrderModal(car);
     }
 }
 
-function initFilters() {
-    ['change', 'input'].forEach((type) => {
-        controls.brand.addEventListener(type, applyFilters);
-        controls.fuel.addEventListener(type, applyFilters);
-        controls.drivetrain.addEventListener(type, applyFilters);
-        controls.transmission.addEventListener(type, applyFilters);
-        controls.price.addEventListener(type, applyFilters);
+function submitLead(form) {
+    const data = Object.fromEntries(new FormData(form).entries());
+    return fetch(`${API_BASE}/leads`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name: data.name,
+            phone: data.phone,
+            note: data.note,
+            carId: data.carId || data.car || null,
+            source: 'site',
+        }),
+    }).then(async (response) => {
+        if (!response.ok) {
+            const error = await response.json().catch(() => ({}));
+            throw new Error(error.error || 'Не удалось отправить заявку');
+        }
+        return response.json();
     });
-    controls.search.addEventListener('input', applyFilters);
-    controls.reset.addEventListener('click', resetFilters);
 }
 
-function initHeroLinks() {
-    const inventoryBtn = document.querySelector('[data-action="open-inventory"]');
-    const servicesBtn = document.querySelector('[data-action="open-services"]');
-    if (inventoryBtn) {
-        inventoryBtn.addEventListener('click', () => {
-            document.getElementById('inventory')?.scrollIntoView({ behavior: 'smooth' });
-        });
-    }
-    if (servicesBtn) {
-        servicesBtn.addEventListener('click', () => {
-            document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-        });
-    }
-    const headerOrder = document.getElementById('header-order');
-    headerOrder?.addEventListener('click', () => openOrderModal('Не выбран'));
-}
+function bindEvents() {
+    elements.headerSearch?.addEventListener('input', () => {
+        elements.filterSearch.value = elements.headerSearch.value;
+        applyFilters();
+    });
+    elements.filterSearch?.addEventListener('input', () => {
+        elements.headerSearch.value = elements.filterSearch.value;
+        applyFilters();
+    });
+    elements.priceRange?.addEventListener('input', () => {
+        updatePriceDisplay();
+    });
+    elements.applyFilters?.addEventListener('click', applyFilters);
+    elements.resetFilters?.addEventListener('click', resetFilters);
+    elements.catalogGrid?.addEventListener('click', handleCatalogClick);
 
-function initModals() {
-    carModal.addEventListener('click', (event) => {
-        if (event.target === carModal || event.target.dataset.close === 'car') {
-            closeCarModal();
+    elements.heroNavPrev?.addEventListener('click', () => {
+        stopHeroAutoplay();
+        rotateHero(-1);
+        startHeroAutoplay();
+    });
+    elements.heroNavNext?.addEventListener('click', () => {
+        stopHeroAutoplay();
+        rotateHero(1);
+        startHeroAutoplay();
+    });
+    elements.heroDetails?.addEventListener('click', (event) => {
+        const carId = event.currentTarget.dataset.id;
+        if (!carId) return;
+        logEvent('hero_details_clicked', carId);
+        window.location.href = `car.html?id=${encodeURIComponent(carId)}`;
+    });
+    elements.heroOrder?.addEventListener('click', (event) => {
+        const carId = event.currentTarget.dataset.id;
+        const car = state.cars.find((item) => item.id === carId);
+        logEvent('hero_order_clicked', carId);
+        openOrderModal(car);
+    });
+
+    elements.heroCTAButtons.catalog?.addEventListener('click', () => scrollToSection('#catalog'));
+    elements.heroCTAButtons.services?.addEventListener('click', () => scrollToSection('#services'));
+    elements.heroCTAButtons.openOrder?.addEventListener('click', () => openOrderModal());
+
+    elements.promoPrev?.addEventListener('click', () => {
+        stopPromoAutoplay();
+        rotatePromo(-1);
+        startPromoAutoplay();
+    });
+    elements.promoNext?.addEventListener('click', () => {
+        stopPromoAutoplay();
+        rotatePromo(1);
+        startPromoAutoplay();
+    });
+
+    elements.orderForm?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        try {
+            await submitLead(elements.orderForm);
+            alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
+            closeOrderModal();
+        } catch (err) {
+            alert(err.message || 'Ошибка отправки заявки');
         }
     });
 
-    orderModal.addEventListener('click', (event) => {
-        if (event.target === orderModal || event.target.dataset.close === 'order') {
+    elements.contactForm?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        try {
+            await submitLead(form);
+            alert('Спасибо! Куратор Petra свяжется с вами в ближайшее время.');
+            form.reset();
+        } catch (err) {
+            alert(err.message || 'Ошибка отправки формы');
+        }
+    });
+
+    elements.orderClose?.addEventListener('click', closeOrderModal);
+    elements.orderModal?.addEventListener('click', (event) => {
+        if (event.target === elements.orderModal) {
             closeOrderModal();
         }
     });
-
-    carModalOrderBtn.addEventListener('click', () => {
-        const carName = carModalOrderBtn.dataset.carName || '';
-        closeCarModal();
-        openOrderModal(carName);
-    });
-
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            if (orderModal.classList.contains('open')) {
-                closeOrderModal();
-            }
-            if (carModal.classList.contains('open')) {
-                closeCarModal();
-            }
+        if (event.key === 'Escape' && elements.orderModal?.classList.contains('open')) {
+            closeOrderModal();
         }
     });
 }
 
-function initForms() {
-    contactForm?.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const name = contactForm.querySelector('#client-name')?.value || 'Гость';
-        alert(`Спасибо, ${name}! Куратор Petra свяжется с вами в ближайшее время.`);
-        contactForm.reset();
-    });
-
-    orderForm?.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const data = Object.fromEntries(new FormData(orderForm).entries());
-        console.table(data);
-        alert('Заявка отправлена! Менеджер Petra свяжется с вами в ближайшее время.');
-        orderForm.reset();
-        closeOrderModal();
-    });
-}
-
-function resizeTrailCanvas() {
-    trailCanvas.width = window.innerWidth;
-    trailCanvas.height = window.innerHeight;
-}
-
-function addTrailPoint(x, y) {
-    const time = performance.now();
-    trailPoints.push({ x, y, time });
-}
-
-function drawTrail() {
-    const now = performance.now();
-    trailPoints = trailPoints.filter((point) => now - point.time < trailTTL);
-
-    trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
-    trailCtx.lineCap = 'round';
-    trailCtx.lineJoin = 'round';
-
-    for (let i = 1; i < trailPoints.length; i += 1) {
-        const start = trailPoints[i - 1];
-        const end = trailPoints[i];
-        const age = (now - end.time) / trailTTL;
-        const alpha = Math.max(0, 0.6 - age * 0.6);
-        if (alpha <= 0) continue;
-        const gradient = trailCtx.createLinearGradient(start.x, start.y, end.x, end.y);
-        gradient.addColorStop(0, `rgba(0, 195, 255, ${alpha * 0.8})`);
-        gradient.addColorStop(1, `rgba(255, 107, 157, ${alpha})`);
-        trailCtx.strokeStyle = gradient;
-        trailCtx.lineWidth = 4;
-        trailCtx.beginPath();
-        trailCtx.moveTo(start.x, start.y);
-        trailCtx.lineTo(end.x, end.y);
-        trailCtx.stroke();
+function setFooterYear() {
+    if (elements.footerYear) {
+        elements.footerYear.textContent = new Date().getFullYear();
     }
-
-    animationFrameId = requestAnimationFrame(drawTrail);
 }
 
-function initCursorTrail() {
-    resizeTrailCanvas();
-    window.addEventListener('resize', resizeTrailCanvas);
-
-    document.addEventListener('pointermove', (event) => {
-        addTrailPoint(event.clientX, event.clientY);
-    });
-
-    document.addEventListener('touchmove', (event) => {
-        const touch = event.touches?.[0];
-        if (touch) {
-            addTrailPoint(touch.clientX, touch.clientY);
+async function loadCars() {
+    try {
+        const cars = await fetchJson(`${API_BASE}/cars`);
+        state.cars = cars || [];
+        state.filtered = cars || [];
+        populateFilters();
+        const presetSearch = sessionStorage.getItem('petraSearch');
+        if (presetSearch) {
+            if (elements.filterSearch) elements.filterSearch.value = presetSearch;
+            if (elements.headerSearch) elements.headerSearch.value = presetSearch;
         }
-    }, { passive: true });
-
-    drawTrail();
+        applyFilters();
+        if (presetSearch) {
+            sessionStorage.removeItem('petraSearch');
+        }
+        pickHeroSequence();
+        updateHero();
+    } catch (err) {
+        console.error(err);
+        elements.catalogGrid.innerHTML = '<p>Не удалось загрузить каталог автомобилей.</p>';
+    }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    populateFilters();
-    renderInventory(carInventory);
-    initFilters();
-    initHeroLinks();
-    initModals();
-    initForms();
-    initCursorTrail();
-
-    inventoryGrid.addEventListener('click', handleInventoryClick);
-
-    const yearHolder = document.getElementById('year');
-    if (yearHolder) {
-        yearHolder.textContent = new Date().getFullYear();
+async function loadPromo() {
+    try {
+        const banners = await fetchJson(`${API_BASE}/banners`);
+        promoState.items = (Array.isArray(banners) ? banners : []).map((item) => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            url: item.url,
+            cta: item.cta,
+            dateLabel: item.dateLabel || item.period || '',
+        }));
+    } catch (err) {
+        promoState.items = [
+            {
+                id: 'fallback-1',
+                title: 'Поступили 3 Range Rover Autobiography PHEV',
+                description: 'Успейте забронировать с поставкой в ноябре: гибридная установка на 510 л.с. и Executive Class салон.',
+                url: '#catalog',
+                cta: 'Смотреть каталог',
+                dateLabel: 'Сентябрь 2025',
+            },
+            {
+                id: 'fallback-2',
+                title: 'Специальные условия на Taycan 4S Cross Turismo',
+                description: 'Доставка под ключ за 90 дней, расширенная гарантия и пневмоподвеска в базе.',
+                url: '#catalog',
+                cta: 'Подробнее',
+                dateLabel: 'Предложение месяца',
+            },
+        ];
     }
-});
+    renderPromo();
+    startPromoAutoplay();
+}
+
+async function bootstrap() {
+    setFooterYear();
+    bindEvents();
+    await loadCars();
+    startHeroAutoplay();
+    await loadPromo();
+}
+
+bootstrap();

@@ -1,0 +1,352 @@
+[
+  {
+    "id": "taycan-4s",
+    "brand": "Porsche",
+    "model": "Taycan 4S Cross Turismo",
+    "fuel": "Электро",
+    "drivetrain": "AWD",
+    "transmission": "2-ступ. автомат",
+    "year": 2024,
+    "price": 11500000,
+    "power": "490 л.с.",
+    "image": "https://images.unsplash.com/photo-1617356719147-1e0d315fabb5?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Полноприводный электрокросс Taycan с адаптивной пневмоподвеской и увеличенным клиренсом для дальних путешествий.",
+    "features": [
+      "Performance Battery Plus",
+      "Запас хода 450 км",
+      "Пневмоподвеска"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "Электрический, 490 л.с." },
+      { "label": "Разгон 0–100", "value": "3,8 с" },
+      { "label": "Запас хода", "value": "до 450 км (WLTP)" },
+      { "label": "Кузов", "value": "Cross Turismo" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Porsche/glTF-Binary/Porsche.glb"
+  },
+  {
+    "id": "m4-competition",
+    "brand": "BMW",
+    "model": "M4 Competition xDrive",
+    "fuel": "Бензин",
+    "drivetrain": "AWD",
+    "transmission": "8-ступ. автомат",
+    "year": 2024,
+    "price": 9700000,
+    "power": "510 л.с.",
+    "image": "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Двухдверное купе M4 Competition с полным приводом и заводским карбоновым пакетом для трека.",
+    "features": [
+      "Carbon Bucket Seats",
+      "M Drift Analyzer",
+      "M xDrive"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "3.0 TwinPower Turbo, 510 л.с." },
+      { "label": "Разгон 0–100", "value": "3,5 с" },
+      { "label": "Подвеска", "value": "Adaptive M" },
+      { "label": "Интерьер", "value": "Carbon bucket seats" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb"
+  },
+  {
+    "id": "gle-450d",
+    "brand": "Mercedes-Benz",
+    "model": "GLE 450d 4MATIC",
+    "fuel": "Дизель",
+    "drivetrain": "AWD",
+    "transmission": "9-ступ. автомат",
+    "year": 2024,
+    "price": 8850000,
+    "power": "367 л.с.",
+    "image": "https://images.unsplash.com/photo-1549921296-3ecf4aac5734?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Современный внедорожник с дизельным mild-hybrid мотором и гигантской мультимедийной панелью Hyperscreen.",
+    "features": [
+      "MBUX Hyperscreen",
+      "AIRMATIC",
+      "Night Package"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "3.0 дизель, 367 л.с. + EQ Boost" },
+      { "label": "Подвеска", "value": "AIRMATIC, адаптивные амортизаторы" },
+      { "label": "Ассистенты", "value": "Driving Assistance Plus" },
+      { "label": "Оснащение", "value": "Night Package, Burmester" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb"
+  },
+  {
+    "id": "lx600",
+    "brand": "Lexus",
+    "model": "LX 600 Ultra Luxury",
+    "fuel": "Бензин",
+    "drivetrain": "4WD",
+    "transmission": "10-ступ. автомат",
+    "year": 2023,
+    "price": 11800000,
+    "power": "409 л.с.",
+    "image": "https://images.unsplash.com/photo-1617469165788-8ffb72239c81?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Флагман Lexus с четырёхместным салоном Executive и мультимедийной системой Mark Levinson Reference.",
+    "features": [
+      "Executive Lounge",
+      "Mark Levinson",
+      "BladeScan AHS"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "3.5 V6 Twin-Turbo, 409 л.с." },
+      { "label": "Салон", "value": "4 кресла Executive Lounge" },
+      { "label": "Аудио", "value": "Mark Levinson Reference" },
+      { "label": "Безопасность", "value": "Lexus Safety System+ 3.0" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/VC/glTF-Binary/VC.glb"
+  },
+  {
+    "id": "landcruiser-300",
+    "brand": "Toyota",
+    "model": "Land Cruiser 300 GR-Sport",
+    "fuel": "Бензин",
+    "drivetrain": "4WD",
+    "transmission": "10-ступ. автомат",
+    "year": 2024,
+    "price": 9600000,
+    "power": "415 л.с.",
+    "image": "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Версия GR-Sport с блокировками, Crawl Control и электронными стабилизаторами KDSS для бездорожья.",
+    "features": [
+      "GR-Sport",
+      "Crawl Control",
+      "KDSS"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "3.5 V6 Twin-Turbo, 415 л.с." },
+      { "label": "Привод", "value": "Full-time 4WD, Multi-Terrain Select" },
+      { "label": "Подвеска", "value": "KDSS, GR настройка" },
+      { "label": "Оснащение", "value": "GR интерьер, 360° камеры" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb"
+  },
+  {
+    "id": "rs-etron",
+    "brand": "Audi",
+    "model": "RS e-tron GT",
+    "fuel": "Электро",
+    "drivetrain": "AWD",
+    "transmission": "Одноступ. редуктор",
+    "year": 2024,
+    "price": 12400000,
+    "power": "646 л.с.",
+    "image": "https://images.unsplash.com/photo-1632477642782-a14547e76437?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Мощный гран-турер Audi с двухмоторной установкой, полноуправляемым шасси и моментальным разгоном.",
+    "features": [
+      "Carbon Black",
+      "All-wheel steering",
+      "Matrix LED"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "Два электромотора, 646 л.с." },
+      { "label": "Разгон 0–100", "value": "3,3 с" },
+      { "label": "Запас хода", "value": "до 472 км (WLTP)" },
+      { "label": "Особенности", "value": "Carbon Black, quattro" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Porsche/glTF-Binary/Porsche.glb"
+  },
+  {
+    "id": "autobiography-phev",
+    "brand": "Land Rover",
+    "model": "Range Rover Autobiography PHEV",
+    "fuel": "Гибрид",
+    "drivetrain": "AWD",
+    "transmission": "8-ступ. автомат",
+    "year": 2024,
+    "price": 14500000,
+    "power": "510 л.с.",
+    "image": "https://images.unsplash.com/photo-1617440168936-ee0ef367f06c?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Подзаряжаемый гибрид Range Rover с четырехместным салоном Executive и топовой акустикой Meridian Signature.",
+    "features": [
+      "Executive Class",
+      "Meridian Signature",
+      "EV Range 100 км"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "3.0 PHEV, 510 л.с." },
+      { "label": "Электроход", "value": "до 100 км (WLTP)" },
+      { "label": "Подвеска", "value": "Electronic Air Suspension" },
+      { "label": "Салон", "value": "Executive Class Comfort" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/VC/glTF-Binary/VC.glb"
+  },
+  {
+    "id": "patrol-nismo",
+    "brand": "Nissan",
+    "model": "Patrol NISMO",
+    "fuel": "Бензин",
+    "drivetrain": "4WD",
+    "transmission": "7-ступ. автомат",
+    "year": 2024,
+    "price": 11200000,
+    "power": "428 л.с.",
+    "image": "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Эксклюзивный Patrol NISMO с заводским тюнингом подвески Bilstein и аэродинамическим обвесом.",
+    "features": [
+      "Bilstein",
+      "NISMO Aero",
+      "Exhaust"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "5.6 V8, 428 л.с." },
+      { "label": "Подвеска", "value": "Bilstein, спортивная настройка" },
+      { "label": "Экстерьер", "value": "NISMO body kit" },
+      { "label": "Интерьер", "value": "Карбон и алькантара" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb"
+  },
+  {
+    "id": "model-x-plaid",
+    "brand": "Tesla",
+    "model": "Model X Plaid",
+    "fuel": "Электро",
+    "drivetrain": "AWD",
+    "transmission": "Одноступ. редуктор",
+    "year": 2024,
+    "price": 10500000,
+    "power": "1020 л.с.",
+    "image": "https://images.unsplash.com/photo-1573729784506-ef942deb1a9a?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Самый быстрый семейный электрокроссовер с три-моторной установкой и дверьми Falcon Wing.",
+    "features": [
+      "Tri-Motor",
+      "Yoke",
+      "Falcon Wings"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "Tri-motor, 1020 л.с." },
+      { "label": "Разгон 0–100", "value": "2,6 с" },
+      { "label": "Запас хода", "value": "до 580 км (WLTP)" },
+      { "label": "Особенности", "value": "Yoke, Falcon Wing, FSD" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Porsche/glTF-Binary/Porsche.glb"
+  },
+  {
+    "id": "ferrari-roma",
+    "brand": "Ferrari",
+    "model": "Roma",
+    "fuel": "Бензин",
+    "drivetrain": "RWD",
+    "transmission": "8-ступ. робот",
+    "year": 2023,
+    "price": 18700000,
+    "power": "620 л.с.",
+    "image": "https://images.unsplash.com/photo-1617814069596-53d76e373902?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Элегантное купе Ferrari с подвеской Magnaride и современным цифровым кокпитом.",
+    "features": [
+      "Matte Grigio",
+      "Magnaride",
+      "Carbon Pack"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "3.9 V8 Twin-Turbo, 620 л.с." },
+      { "label": "Разгон 0–100", "value": "3,4 с" },
+      { "label": "Макс. скорость", "value": "320 км/ч" },
+      { "label": "Пакет", "value": "Carbon interior/exterior" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/VC/glTF-Binary/VC.glb"
+  },
+  {
+    "id": "ioniq5-n",
+    "brand": "Hyundai",
+    "model": "Ioniq 5 N",
+    "fuel": "Электро",
+    "drivetrain": "AWD",
+    "transmission": "Одноступ. редуктор",
+    "year": 2025,
+    "price": 6400000,
+    "power": "650 л.с.",
+    "image": "https://images.unsplash.com/photo-1620891549027-942fdc95a128?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Электрический хот-хэтч Hyundai N с трековым пакетом, системой N e-Shift и усиленным охлаждением.",
+    "features": [
+      "N e-Shift",
+      "Track Mode",
+      "Drift Optimizer"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "Два электромотора, 650 л.с. (boost)" },
+      { "label": "Разгон 0–100", "value": "3,4 с" },
+      { "label": "Аккумулятор", "value": "84 кВт·ч, 800V" },
+      { "label": "Особенности", "value": "N Drift Optimizer, Track Mode" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb"
+  },
+  {
+    "id": "escalade-v",
+    "brand": "Cadillac",
+    "model": "Escalade-V ESV",
+    "fuel": "Бензин",
+    "drivetrain": "AWD",
+    "transmission": "10-ступ. автомат",
+    "year": 2024,
+    "price": 12500000,
+    "power": "682 л.с.",
+    "image": "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Полноприводный Escalade-V с компрессорным V8, премиальным салоном и системой Super Cruise.",
+    "features": [
+      "Super Cruise",
+      "AKG 36 speakers",
+      "MagRide 4.0"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "6.2 V8 с нагнетателем, 682 л.с." },
+      { "label": "Подвеска", "value": "Magnetic Ride Control 4.0" },
+      { "label": "Аудио", "value": "AKG Studio Reference 36 динамиков" },
+      { "label": "Технологии", "value": "Super Cruise, Night Vision" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb"
+  },
+  {
+    "id": "gr-yaris",
+    "brand": "Toyota",
+    "model": "GR Yaris Circuit Pack",
+    "fuel": "Бензин",
+    "drivetrain": "AWD",
+    "transmission": "6-ступ. МКПП",
+    "year": 2024,
+    "price": 4300000,
+    "power": "304 л.с.",
+    "image": "https://images.unsplash.com/photo-1618841558898-14d0329e6356?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Ралли-хэтчбек с трёхцилиндровым турбомотором, механикой и заводским Circuit Pack.",
+    "features": [
+      "Torsen LSD",
+      "Circuit Suspension",
+      "Lightweight"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "1.6 Turbo, 304 л.с." },
+      { "label": "Коробка", "value": "6-ступ. механика, iMT" },
+      { "label": "Пакет", "value": "Circuit Pack: Torsen LSD" },
+      { "label": "Масса", "value": "1 280 кг" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb"
+  },
+  {
+    "id": "bmw-520d",
+    "brand": "BMW",
+    "model": "520d Touring xDrive",
+    "fuel": "Дизель",
+    "drivetrain": "AWD",
+    "transmission": "8-ступ. автомат",
+    "year": 2024,
+    "price": 5200000,
+    "power": "197 л.с.",
+    "image": "https://images.unsplash.com/photo-1614592997646-dc9a5ea938b4?auto=compress&cs=tinysrgb&w=1600",
+    "description": "Практичный универсал с экономичным дизелем, mild-hybrid системой и пакетом M Sport Pro.",
+    "features": [
+      "M Sport Pro",
+      "Panoramic Sky Lounge",
+      "Mild-Hybrid"
+    ],
+    "specs": [
+      { "label": "Двигатель", "value": "2.0 дизель + 48V mild-hybrid, 197 л.с." },
+      { "label": "Привод", "value": "xDrive, адаптивная подвеска" },
+      { "label": "Интерьер", "value": "Sensafin + Sky Lounge" },
+      { "label": "Технологии", "value": "Live Cockpit Professional" }
+    ],
+    "modelUrl": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb"
+  }
+]

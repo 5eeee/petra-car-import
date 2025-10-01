@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Карточка автомобиля — Petra Imports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+</head>
+<body class="car-page">
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="index.html" aria-label="Вернуться на главную Petra Imports">
+                <span class="brand__mark">PETRA</span>
+                <span class="brand__tag">car import</span>
+            </a>
+            <nav class="site-nav" aria-label="Навигация">
+                <a href="index.html#catalog">Каталог</a>
+                <a href="index.html#promo">Акции</a>
+                <a href="index.html#services">Сервисы</a>
+                <a href="index.html#contact">Контакты</a>
+            </nav>
+            <div class="site-header__search">
+                <label class="search-field">
+                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M13.5 12.1l4 4a1 1 0 01-1.4 1.4l-4-4a6.5 6.5 0 111.4-1.4zM9 13a4 4 0 100-8 4 4 0 000 8z" fill="currentColor"/></svg>
+                    <input id="inline-search" type="search" placeholder="Поиск по каталогу" autocomplete="off" />
+                </label>
+            </div>
+            <button class="btn btn-primary" type="button" data-action="open-order">Оставить заявку</button>
+        </div>
+    </header>
+
+    <main class="car-layout">
+        <section class="car-hero" id="car-hero">
+            <div class="car-hero__heading">
+                <a class="car-hero__back" href="index.html#catalog">← Вернуться в каталог</a>
+                <p class="eyebrow" id="car-tag">Каталог Petra</p>
+                <h1 id="car-title">Выбранный автомобиль</h1>
+                <p class="muted" id="car-subtitle"></p>
+            </div>
+            <div class="car-media">
+                <div class="car-media__viewer">
+                    <model-viewer id="detail-viewer" camera-controls auto-rotate shadow-intensity="0.5" exposure="1.08"></model-viewer>
+                </div>
+                <div class="car-media__gallery">
+                    <div class="car-gallery" id="car-gallery">
+                        <button class="car-gallery__nav" type="button" data-gallery="prev" aria-label="Предыдущее фото"></button>
+                        <div class="car-gallery__viewport">
+                            <div class="car-gallery__track" id="car-gallery-track"></div>
+                        </div>
+                        <button class="car-gallery__nav" type="button" data-gallery="next" aria-label="Следующее фото"></button>
+                    </div>
+                </div>
+                <aside class="car-summary" id="car-summary">
+                    <div class="car-summary__price" id="car-price"></div>
+                    <dl class="car-summary__stats" id="car-primary-specs"></dl>
+                    <div class="car-summary__features" id="car-feature-chips"></div>
+                    <div class="car-summary__actions">
+                        <button class="btn btn-primary" type="button" id="car-order">Оставить заявку</button>
+                        <a class="btn btn-secondary" id="car-download" target="_blank" rel="noopener">Скачать спецификацию</a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="car-specs" id="car-specs">
+            <h2>Подробные характеристики</h2>
+            <div class="car-specs__grid" id="car-spec-list"></div>
+        </section>
+
+        <section class="car-description" id="car-description">
+            <h2>Описание модели</h2>
+            <p id="car-description-text" class="muted"></p>
+        </section>
+
+        <section class="car-similar" id="car-similar">
+            <div class="car-similar__heading">
+                <h2>Похожие автомобили</h2>
+                <div class="car-similar__controls">
+                    <button class="carousel-nav" type="button" data-similar="prev" aria-label="Предыдущий автомобиль"></button>
+                    <button class="carousel-nav" type="button" data-similar="next" aria-label="Следующий автомобиль"></button>
+                </div>
+            </div>
+            <div class="car-similar__viewport">
+                <div class="car-similar__track" id="car-similar-track"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="footer-year"></span> Petra Imports.</p>
+        <div class="site-footer__links">
+            <a href="index.html#contact">Связаться</a>
+            <a href="index.html#services">Сервисы</a>
+            <a href="#car-hero">Наверх</a>
+        </div>
+    </footer>
+
+    <div class="modal" id="order-modal" aria-hidden="true">
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
+            <button class="modal__close" type="button" data-close="order" aria-label="Закрыть">×</button>
+            <div class="modal__content">
+                <h3 id="order-modal-title">Оставить заявку</h3>
+                <form id="order-form" class="form">
+                    <input type="hidden" name="carId" id="order-car-id" />
+                    <label>
+                        Имя
+                        <input type="text" name="name" id="order-name" required minlength="2" placeholder="Ваше имя" />
+                    </label>
+                    <label>
+                        Телефон
+                        <input type="tel" name="phone" id="order-phone" required placeholder="+7 (___) ___-__-__" />
+                    </label>
+                    <label>
+                        Автомобиль
+                        <input type="text" name="car" id="order-car" readonly />
+                    </label>
+                    <label>
+                        Комментарий
+                        <textarea name="note" id="order-note" rows="3" placeholder="Дополнительные пожелания"></textarea>
+                    </label>
+                    <button class="btn btn-primary" type="submit">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="car.js"></script>
+</body>
+</html>
