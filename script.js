@@ -198,17 +198,12 @@ function renderCatalog() {
                     <span>${car.year}</span>
                 </div>
                 <div class="catalog-card__price">${priceFormatter.format(car.price)}</div>
-                <div class="catalog-card__meta">
-                    <span>${car.fuel}</span>
-                    <span>${car.drivetrain}</span>
-                    <span>${car.transmission}</span>
-                </div>
-                <div class="catalog-card__features">
-                    ${(car.features || [])
-                        .slice(0, 3)
-                        .map((feature) => `<span>${feature}</span>`)
-                        .join('')}
-                </div>
+                <ul class="catalog-card__specs">
+                    <li><span>Топливо</span><strong>${car.fuel}</strong></li>
+                    <li><span>Привод</span><strong>${car.drivetrain}</strong></li>
+                    <li><span>Коробка</span><strong>${car.transmission || '—'}</strong></li>
+                    <li><span>Мощность</span><strong>${car.power || '—'}</strong></li>
+                </ul>
                 <div class="catalog-card__actions">
                     <button class="btn btn-secondary" data-action="details" data-id="${car.id}">Подробнее</button>
                     <button class="btn btn-primary" data-action="order" data-id="${car.id}">Оставить заявку</button>
